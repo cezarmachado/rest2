@@ -1,0 +1,31 @@
+{
+  "name": "rest",
+  "version": "1.0.0",
+  "description": "demo app",
+  "main": "loader.js",
+  "scripts": {
+    "dev": "nodemon",
+    "production": "pm2 start loader.js --name backend"
+  },
+  "author": "Machado, Cezar da Silva",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "express-query-int": "^1.0.1",
+    "jsonwebtoken": "^7.3.0",
+    "jwt-simple": "^0.5.1",
+    "lodash": "^4.17.4",
+    "mongoose": "4.1.1",
+    "mongoose-paginate": "^5.0.3",
+    "morgan": "^1.8.1",
+    "node-restful": "^0.2.6",
+    "nodemailer": "^4.2.0",
+    "pm2": "^2.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
