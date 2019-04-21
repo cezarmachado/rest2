@@ -9,12 +9,15 @@ function getMatches(req, res, name) {
 
     var vDataIni = `${dataIni.substring(0, 4)}-${dataIni.substring(4, 6)}-${dataIni.substring(6, 8)}`;
     var vDataFim = `${dataFim.substring(0, 4)}-${dataFim.substring(4, 6)}-${dataFim.substring(6, 8)}`;
+    var nomes = [] ;
 
-    console.log(req.body)
-    console.log(req.body.usuario[0].nome)
+    
+    _.forIn(req.body.usuario, function(value, key) {
+       nomes[key] = (value.nome);
+    });
+    console.log(nomes);
 
     if (req.body.usuario[0].nome == 'super') {
-    
         compra.find({   $and:   [{ dt_requisicao: { $gte: vDataIni}} , //data de requisição
                                 { dt_requisicao: { $lte: vDataFim}}], //data de requisição 
                         $or:   [{nr_requisicao         :req.query.word},   //Requisição
@@ -117,8 +120,10 @@ function getMatches(req, res, name) {
         ).skip( req.query.skip ).limit( req.query.limit )
     }
     else {
+        //{items: {$in: myItemsArray}}
         compra.find({   $and:   [{ dt_requisicao: { $gt: vDataIni}} , //data de requisição
-                                 { dt_requisicao: { $lt: vDataFim}}], //data de requisição 
+                                 { dt_requisicao: { $lt: vDataFim}}, //data de requisição 
+                                 {requisitante: {$in: nomes}}],
                          $or:   [{nr_requisicao         :req.query.word},   //Requisição
                                  {aprovador             :{$regex:rQuery}},  //Requisição                   
                                  {requisitante          :{$regex:rQuery}},  //Requisição                 
