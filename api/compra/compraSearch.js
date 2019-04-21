@@ -15,7 +15,7 @@ function getMatches(req, res, name) {
     _.forIn(req.body.usuario, function(value, key) {
        nomes[key] = (value.nome);
     });
-    console.log(nomes);
+    //console.log(nomes);
 
     if (req.body.usuario[0].nome == 'super') {
         compra.find({   $and:   [{ dt_requisicao: { $gte: vDataIni}} , //data de requisição
